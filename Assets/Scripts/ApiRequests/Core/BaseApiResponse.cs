@@ -1,4 +1,7 @@
-/// <summary>
-/// Marker class for response (using by request classes)
-/// </summary>
-public abstract class BaseApiResponse { }
+namespace WebWatch.ApiRequests
+{
+    /// <summary>
+    /// Marker class for response
+    /// </summary>
+    public abstract class BaseApiResponse { }
+}

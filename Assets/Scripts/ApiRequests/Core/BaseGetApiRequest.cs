@@ -1,6 +1,9 @@
 using UnityEngine.Networking;
 
-public abstract class BaseGetApiRequest<T> : BaseApiRequest<T> where T : BaseApiResponse
+namespace WebWatch.ApiRequests
 {
-    protected override UnityWebRequest CreateRequest() => UnityWebRequest.Get(CreateUrl());
+    public abstract class BaseGetApiRequest<T> : BaseApiRequest<T> where T : BaseApiResponse
+    {
+        protected override UnityWebRequest CreateRequest() => UnityWebRequest.Get(CreateUrl());
+    }
 }

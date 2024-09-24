@@ -2,32 +2,35 @@ using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public abstract class BaseApiRequest<T> : ApiRequest<T> where T : BaseApiResponse
+namespace WebWatch.ApiRequests
 {
-    public UnityEvent Send;
-    public UnityEvent<UnityWebRequest.Result, string> Error;
-    public UnityEvent<T> Success;
-    public UnityEvent<string> SuccessRawData;
-    public UnityEvent Progress;
-
-    [ContextMenu("Send")]
-    public virtual void SendRequest()
+    public abstract class BaseApiRequest<T> : ApiRequest<T> where T : BaseApiResponse
     {
-        Send.Invoke();
-        SendRequest(CreateRequest());
+        public UnityEvent Sended;
+        public UnityEvent<UnityWebRequest.Result, string> Errored;
+        public UnityEvent<T> Succeeded;
+        public UnityEvent<string> SucceededRawData;
+        public UnityEvent Progressing;
+
+        [ContextMenu("Send")]
+        public virtual void SendRequest()
+        {
+            Sended.Invoke();
+            SendRequest(CreateRequest());
+        }
+        protected abstract string CreateUrl();
+        protected abstract UnityWebRequest CreateRequest();
+
+        protected override void OnProgress()
+        {
+            Progressing.Invoke();
+        }
+
+        protected override void OnError(UnityWebRequest.Result result, string error) => Errored.Invoke(result, error);
+
+        protected override void OnSuccess(T response) => Succeeded.Invoke(response);
+
+        protected override void OnSuccessRawData(string responseJson) => SucceededRawData.Invoke(responseJson);
+
     }
-    protected abstract string CreateUrl();
-    protected abstract UnityWebRequest CreateRequest();
-
-    protected override void InProgress()
-    {
-        Progress.Invoke();
-    }
-
-    protected override void ErrorCallback(UnityWebRequest.Result result, string error) => Error.Invoke(result, error);
-
-    protected override void SuccessCallback(T response) => Success.Invoke(response);
-
-    protected override void SuccessRawDataCallback(string responseJson) => SuccessRawData.Invoke(responseJson);
-
 }
