@@ -1,25 +1,22 @@
 using System;
 using UnityEngine;
-using WebWatch.Time;
 
-public class Timer : MonoBehaviour
+namespace WebWatch.Time
 {
-    [SerializeField] TimeData _timeData;
-
-    public bool IsActive { get; set; } = true;
-
-    private void Awake()
+    public class Timer : MonoBehaviour
     {
-        _timeData.SetCurrentTime(DateTime.Now);
-    }
+        [SerializeField] TimeData _timeData;
 
-    private void Update()
-    {
-        if (_timeData is not null)
+        private void Awake()
         {
-            if (IsActive)
+            _timeData.SetCurrentTime(DateTime.Now);
+        }
+
+        private void Update()
+        {
+            if (_timeData is not null)
             {
-                _timeData.SetCurrentTime(_timeData.CurrentTime.AddSeconds(Time.deltaTime));
+                _timeData.SetCurrentTime(_timeData.CurrentTime.AddSeconds(UnityEngine.Time.deltaTime));
             }
         }
     }

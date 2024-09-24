@@ -11,6 +11,7 @@ namespace WebWatch.Time
         public UnityEvent<DateTime> TimeChanged;
 
         public DateTime CurrentTime => _currentTime;
+        public bool IsActive { get; set; } = true;
 
         public void SetCurrentTimeFromUTC(DateTime utcTime)
         {
@@ -28,7 +29,8 @@ namespace WebWatch.Time
             if (!_currentTime.Equals(newTime))
             {
                 _currentTime = newTime;
-                TimeChanged.Invoke(newTime);
+                if (IsActive) 
+                    TimeChanged.Invoke(newTime);
             }
         }
     }
