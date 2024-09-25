@@ -15,8 +15,7 @@ namespace WebWatch.Time
 
         public void CkeckCorrectInput(string time)
         {
-            Debug.Log(time + " " + DateTime.TryParseExact(time, _format, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var newTime));
-            InputCorrect.Invoke(DateTime.TryParseExact(time, _format, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out newTime));
+            InputCorrect.Invoke(DateTime.TryParseExact(time, _format, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var newTime));
             NewTime = newTime;
         }
 

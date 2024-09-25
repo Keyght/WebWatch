@@ -406,7 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698ef3d8e125b7c4fb7a7e085dd62109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 3
+  _timeView: {fileID: 545004537}
+  _rotationSpeed: 1
+  _duration: 0.1
 --- !u!65 &434420885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -489,8 +491,12 @@ MonoBehaviour:
   _minuteArrow: {fileID: 81412964}
   _secondArrow: {fileID: 633648933}
   _timeText: {fileID: 369069424}
+  _timeInput: {fileID: 2035145871}
   _duration: 0.1
   _format: HH:mm:ss
+  ArrowsDataRequested:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &545004538
 Transform:
   m_ObjectHideFlags: 0
@@ -685,6 +691,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 545004537}
+        m_TargetAssemblyTypeName: WebWatch.Time.TimeView, WebWatch
+        m_MethodName: SetTimeFromInputField
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &949462782
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "22:14:52\u200B"
+  m_text: "00:00:00\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1477,7 +1495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698ef3d8e125b7c4fb7a7e085dd62109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 3
+  _timeView: {fileID: 545004537}
+  _rotationSpeed: 1
+  _duration: 0.1
 --- !u!65 &1500113168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1563,6 +1583,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669392020}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1013631151}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1721,7 +1753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698ef3d8e125b7c4fb7a7e085dd62109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 3
+  _timeView: {fileID: 545004537}
+  _rotationSpeed: 1
+  _duration: 0.1
 --- !u!65 &1581242564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2538,7 +2572,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 22:14:52
+  m_Text: 00:00:00
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
