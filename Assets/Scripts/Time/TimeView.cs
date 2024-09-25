@@ -37,15 +37,37 @@ namespace WebWatch.Time
 
         public void RequestArrowsData()
         {
-            var hourRot = TransformUtils.GetInspectorRotation(_hourArrow);
-            var minuteRot = TransformUtils.GetInspectorRotation(_minuteArrow);
-            var secondRot = TransformUtils.GetInspectorRotation(_secondArrow);
+            var hourRot = _hourArrow.localEulerAngles;
+            var minuteRot = _minuteArrow.localEulerAngles;
+            var secondRot = _secondArrow.localEulerAngles;
 
-            var second = (int)  (secondRot.x > 0 ? secondRot.x : 360 + secondRot.x) / _clockScaleInterval;
-            var minute = (int) (minuteRot.x > 0 ? minuteRot.x : 360 + minuteRot.x) / _clockScaleInterval;
-            var hour = (int) (hourRot.x > 0 ? hourRot.x : 360 + hourRot.x) / _clockScaleIntervalHours;
+            RotationToEditor(hourRot, out var hourX);
+            RotationToEditor(minuteRot, out var minuteX);
+            RotationToEditor(secondRot, out var secondX);
+
+            var second = (int)(secondX > 0 ? secondX : 360 + secondX) / _clockScaleInterval;
+            var minute = (int)(minuteX > 0 ? minuteX : 360 + minuteX) / _clockScaleInterval;
+            var hour = (int)(hourX > 0 ? hourX : 360 + hourX) / _clockScaleIntervalHours;
 
             _timeInput.text = $"{hour.ToString("D2")}:{minute.ToString("D2")}:{second.ToString("D2")}";
+        }
+
+        private void RotationToEditor(Vector3 hourRot, out Single angle)
+        {
+            if (hourRot.x > 0 && hourRot.x < 180)
+            {
+                if (hourRot.y == 180)
+                    angle = 180 - hourRot.x;
+                else
+                    angle = hourRot.x;
+            }
+            else
+            {
+                if (hourRot.y == 180)
+                    angle = -(hourRot.x - 180);
+                else
+                    angle = -(360 - hourRot.x);
+            }
         }
 
         public void OnTimeChanged(DateTime dateTime)
